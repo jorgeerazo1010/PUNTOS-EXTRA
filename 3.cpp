@@ -22,14 +22,14 @@ int agregarProducto(Producto inventario[], int n)
     }
 
     Producto nuevo;
-    cout << "Nuevo producto: " <<endl;
-    cout << "Codigo: " <<endl;
+    cout << "Nuevo producto: " << endl;
+    cout << "Codigo: " << endl;
     cin >> nuevo.codigo;
-    cout << "Nombre: " <<endl;
+    cout << "Nombre: " << endl;
     getline(cin >> ws, nuevo.nombre);
-    cout << "Precio: " <<endl;
+    cout << "Precio: " << endl;
     cin >> nuevo.precio;
-    cout << "Cantidad: " <<endl;
+    cout << "Cantidad: " << endl;
     cin >> nuevo.cantidad;
 
     inventario[n] = nuevo;
@@ -53,7 +53,7 @@ int buscarProducto(Producto inventario[], int n, int codigo)
 void mostrarProductoEncontrado(Producto inventario[], int n)
 {
     int codigo;
-    cout << "Ingrese el codigo del producto a buscar: " <<endl;
+    cout << "Ingrese el codigo del producto a buscar: " << endl;
     cin >> codigo;
 
     int pos = buscarProducto(inventario, n, codigo);
@@ -83,11 +83,35 @@ void calcularValorTotal(Producto inventario[], int n)
 
 int main()
 {
-    totalProductos = agregarProducto(inventario, totalProductos);
+    int opcion;
+    do
+    {
+        cout << "MENU" << endl;
+        cout << "1. Agregar producto" << endl;
+        cout << "2. Buscar producto" << endl;
+        cout << "3. Calcular valor total del inventario" << endl;
+        cout << "4. Salir" << endl;
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
 
-    mostrarProductoEncontrado(inventario, totalProductos);
-
-    calcularValorTotal(inventario, totalProductos);
+        switch (opcion)
+        {
+        case 1:
+            totalProductos = agregarProducto(inventario, totalProductos);
+            break;
+        case 2:
+            mostrarProductoEncontrado(inventario, totalProductos);
+            break;
+        case 3:
+            calcularValorTotal(inventario, totalProductos);
+            break;
+        case 4:
+            cout << "Saliendo del programa" << endl;
+            break;
+        default:
+            cout << "Opcion no valida, intente nuevamente." << endl;
+        }
+    } while (opcion != 4);
 
     return 0;
 }
